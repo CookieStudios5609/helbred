@@ -1,5 +1,5 @@
 # helbred
-*A fitness, health, and wellness app for Android. *
+*A fitness, health, and wellness app for Android.*
 
 ## Installation
 1. Clone the repo using `git clone`

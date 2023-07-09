@@ -14,9 +14,15 @@ class MainActivity : AppCompatActivity() {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
         val progressMessage = findViewById<TextView>(R.id.goalsMessage)
         progressWheel.setProgress(22, true)
+        val percent = findViewById<TextView>(R.id.percentageText)
+        percent.text = "22%"
+
         if (progressWheel.progress > 20) {
             progressWheel.setIndicatorColor(getColor(R.color.success_green))
             progressMessage.setTextColor(getColor(R.color.success_green))
+            progressMessage.text = buildString {
+        append("You've made some progress today. Keep going!")
+    }
         }
 
 

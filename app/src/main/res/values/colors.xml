@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="success_green">#4CAF50</color>
+    <color name="stretching">#E28602</color>
+    <color name="workout">#6702E2</color>
+    <color name="drink">#028CE2</color>
+    <color name="button_background">#FAE1E1E1</color>
 </resources>

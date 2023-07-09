@@ -32,17 +32,153 @@
         app:layout_constraintHorizontal_bias=".5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:trackThickness="16dp" />
+        app:trackThickness="24dp" />
 
     <TextView
         android:id="@+id/goalsMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:foregroundGravity="center_horizontal"
+        android:gravity="center_horizontal"
         android:text="@string/goalsMessagemessage"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dailyProgressWheel" />
+
+    <ImageButton
+        android:id="@+id/meditation_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="554dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/button_background"
+        android:contentDescription="Meditation"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_attribution_24" />
+
+    <ImageButton
+        android:id="@+id/drink_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="554dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/button_background"
+        android:contentDescription="Hydration"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/meditation_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_local_drink_24" />
+
+    <ImageButton
+        android:id="@+id/stretch_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/button_background"
+        android:contentDescription="Stretching"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/meditation_btn"
+        app:layout_constraintEnd_toStartOf="@+id/workout_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/baseline_sports_gymnastics_24" />
+
+    <ImageButton
+        android:id="@+id/workout_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/button_background"
+        android:contentDescription="Workout"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/drink_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stretch_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_fitness_center_24" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Stretch"
+        android:textColor="@color/stretching"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/stretch_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/stretch_btn"
+        app:layout_constraintTop_toBottomOf="@+id/stretch_btn" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Workout"
+        android:textColor="@color/workout"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/workout_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/workout_btn"
+        app:layout_constraintTop_toBottomOf="@+id/workout_btn" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Drink"
+        android:textColor="@color/drink"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/drink_btn"
+        app:layout_constraintEnd_toEndOf="@+id/drink_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/drink_btn" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Meditate"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/meditation_btn"
+        app:layout_constraintEnd_toEndOf="@+id/meditation_btn"
+        app:layout_constraintStart_toStartOf="@+id/meditation_btn" />
+
+    <TextView
+        android:id="@+id/percentageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please Wait"
+        android:textColor="@color/success_green"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/dailyProgressWheel"
+        app:layout_constraintEnd_toEndOf="@+id/dailyProgressWheel"
+        app:layout_constraintStart_toStartOf="@+id/dailyProgressWheel"
+        app:layout_constraintTop_toTopOf="@+id/dailyProgressWheel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

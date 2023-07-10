@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">helbred</string>
-    <string name="goalsMessagemessage">nice</string>
+    <string name="placeholder">Please Wait</string>
+    <string name="stretch">Stretch</string>
+    <string name="workout">Workout</string>
+    <string name="meditate">Meditate</string>
+    <string name="hydrate">Hydrate</string>
+    <string name="preferences">Settings</string>
+
 </resources>

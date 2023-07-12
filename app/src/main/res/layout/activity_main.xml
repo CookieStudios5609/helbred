@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#00FFFFFF"
+        android:contentDescription="@string/preferences"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:src="@drawable/baseline_settings_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/dailyProgressWheel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:indicatorColor="@color/black"
+        app:indicatorInset="4dp"
+        app:indicatorSize="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias=".5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:trackThickness="24dp" />
+
+    <TextView
+        android:id="@+id/goalsMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="@string/placeholder"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dailyProgressWheel" />
+
+    <ImageButton
+        android:id="@+id/meditation_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="554dp"
+        android:layout_marginEnd="234dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/button_background"
+        android:contentDescription="@string/meditate"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_attribution_24" />
+
+    <ImageButton
+        android:id="@+id/hydrate_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="554dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/button_background"
+        android:contentDescription="@string/hydrate"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/meditation_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_local_drink_24" />
+
+    <ImageButton
+        android:id="@+id/stretch_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/button_background"
+        android:contentDescription="@string/stretch"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/meditation_btn"
+        app:layout_constraintEnd_toStartOf="@+id/workout_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/baseline_sports_gymnastics_24" />
+
+    <ImageButton
+        android:id="@+id/workout_btn"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="48dp"
+        android:layout_marginBottom="72dp"
+        android:background="@color/button_background"
+        android:contentDescription="@string/workout"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toTopOf="@+id/hydrate_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/stretch_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_fitness_center_24" />
+
+    <TextView
+        android:id="@+id/stretchText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/stretch"
+        android:textColor="@color/stretching"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/stretch_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/stretch_btn"
+        app:layout_constraintTop_toBottomOf="@+id/stretch_btn" />
+
+    <TextView
+        android:id="@+id/workoutText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/workout"
+        android:textColor="@color/workout"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/workout_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/workout_btn"
+        app:layout_constraintTop_toBottomOf="@+id/workout_btn" />
+
+    <TextView
+        android:id="@+id/hydrateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/hydrate"
+        android:textColor="@color/drink"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/hydrate_btn"
+        app:layout_constraintEnd_toEndOf="@+id/hydrate_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/hydrate_btn" />
+
+    <TextView
+        android:id="@+id/meditateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="@string/meditate"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/meditation_btn"
+        app:layout_constraintEnd_toEndOf="@+id/meditation_btn"
+        app:layout_constraintStart_toStartOf="@+id/meditation_btn" />
+
+    <TextView
+        android:id="@+id/percentageText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/placeholder"
+        android:textColor="@color/success_green"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/dailyProgressWheel"
+        app:layout_constraintEnd_toEndOf="@+id/dailyProgressWheel"
+        app:layout_constraintStart_toStartOf="@+id/dailyProgressWheel"
+        app:layout_constraintTop_toTopOf="@+id/dailyProgressWheel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

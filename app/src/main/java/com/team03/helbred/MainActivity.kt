@@ -13,6 +13,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+        val HydrateButton : ImageButton = findViewById(R.id.hydrate_btn)
+
+
+
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
         val progressMessage = findViewById<TextView>(R.id.goalsMessage)
         progressWheel.setProgress(22, true)
@@ -25,6 +30,10 @@ class MainActivity : AppCompatActivity() {
             progressMessage.text = buildString {
         append("You've made some progress today. Keep going!")
     }
+        }
+        HydrateButton.setOnClickListener{
+            val intent = Intent(this,DrinkingActivity::class.java)
+            startActivity(intent)
         }
         //TODO: placeholder for future activities
 //        fun onMainButtonsPressed(button: ImageButton) {

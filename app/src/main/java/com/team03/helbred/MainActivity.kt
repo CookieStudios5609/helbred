@@ -44,6 +44,11 @@ class MainActivity : AppCompatActivity() {
 //        fun gotoSettings() {
 //            startActivity(Intent(this))
 //        }
+        val workoutsButton = findViewById<ImageButton>(R.id.workout_btn)
+        workoutsButton.setOnClickListener{
+            startActivity(Intent(this, WorkoutLocaleChooserActivity::class.java))
+        }
+
 
 
     }

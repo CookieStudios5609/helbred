@@ -1,5 +1,6 @@
 package com.team03.helbred
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageButton
@@ -34,6 +35,11 @@ class MainActivity : AppCompatActivity() {
 //        fun gotoSettings() {
 //            startActivity(Intent(this))
 //        }
+        val workoutsButton = findViewById<ImageButton>(R.id.workout_btn)
+        workoutsButton.setOnClickListener{
+            startActivity(Intent(this, WorkoutLocaleChooserActivity::class.java))
+        }
+
 
 
     }

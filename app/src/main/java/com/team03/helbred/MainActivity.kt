@@ -14,7 +14,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val HydrateButton : ImageButton = findViewById(R.id.hydrate_btn)
+        val hydrateButton : ImageButton = findViewById(R.id.hydrate_btn)
+        val workoutsButton = findViewById<ImageButton>(R.id.workout_btn)
 
 
 
@@ -31,20 +32,12 @@ class MainActivity : AppCompatActivity() {
         append("You've made some progress today. Keep going!")
     }
         }
-        HydrateButton.setOnClickListener{
+
+
+        hydrateButton.setOnClickListener{
             val intent = Intent(this,DrinkingActivity::class.java)
             startActivity(intent)
         }
-        //TODO: placeholder for future activities
-//        fun onMainButtonsPressed(button: ImageButton) {
-//            if (button.id.toString() == "workout_btn") {
-//                startActivity(Intent(this, WorkoutPickActivity::class.kt))
-//            }
-//        }
-//        fun gotoSettings() {
-//            startActivity(Intent(this))
-//        }
-        val workoutsButton = findViewById<ImageButton>(R.id.workout_btn)
         workoutsButton.setOnClickListener{
             startActivity(Intent(this, WorkoutLocaleChooserActivity::class.java))
         }

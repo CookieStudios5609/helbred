@@ -40,7 +40,7 @@ class MeditationActivity : AppCompatActivity() {
 
     }
         TimerButton.setOnClickListener {
-            timer.start()
+            BreathingExcerise(BreathingType)
         }
     }
 
@@ -57,6 +57,7 @@ class MeditationActivity : AppCompatActivity() {
     fun BreathingExcerise(BreathingType: TextView){
         BreathingType.text = "Breath In"
         timer.start()
+
         BreathingType.text = "Hold"
         timer.start()
 

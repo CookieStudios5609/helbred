@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
 
         val HydrateButton : ImageButton = findViewById(R.id.hydrate_btn)
+        val MeditationButton : ImageButton = findViewById(R.id.meditation_btn)
 
 
 
@@ -33,6 +34,10 @@ class MainActivity : AppCompatActivity() {
         }
         HydrateButton.setOnClickListener{
             val intent = Intent(this,DrinkingActivity::class.java)
+            startActivity(intent)
+        }
+        MeditationButton.setOnClickListener{
+            val intent = Intent(this,MeditationActivity::class.java)
             startActivity(intent)
         }
         //TODO: placeholder for future activities

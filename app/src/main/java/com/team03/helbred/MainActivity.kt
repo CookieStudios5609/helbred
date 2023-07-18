@@ -15,9 +15,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         setListeners()
-        showProgress(72)
-
-
+        showProgress(79)
 
     }
     private fun getThresholds(): ArrayList<Int>{ //lets just hope no bad info gets in here
@@ -36,16 +34,18 @@ class MainActivity : AppCompatActivity() {
         prefReader.close()
         return threshes
 
-    }
-    fun getStreak(): String {
+    }//TODO: preferences page
+    private fun getStreak(): String {
         // the streak is just a number. Increment it each time user hits 100
+        // I think this is a good compromise; making a file that grows every single day could get problematic...
+        // though, we'd just be iterating over n days where app has been opened
         val streak = File(applicationContext.filesDir, "streak").bufferedReader()
         val dayCount:String = streak.readLine()
         streak.close()
         return dayCount
 
     }
-    fun setListeners() {
+    private fun setListeners() {
         val hydrateButton = findViewById<ImageButton>(R.id.hydrate_btn)
         val workoutsButton = findViewById<ImageButton>(R.id.workout_btn)
         val meditateButton = findViewById<ImageButton>(R.id.meditation_btn)
@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, WorkoutLocaleChooserActivity::class.java))
         }
     }
-    fun showProgress(completion: Int) {
+    private fun showProgress(completion: Int) {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
         val progressMessage = findViewById<TextView>(R.id.goalsMessage)
         progressWheel.setProgress(completion, true)
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         percent.text = completion.toString() + "%"
 
         val threshes = getThresholds()
-        if (completion == threshes[3]) { //TODO: collaborator implements success thresholds
+        if (completion == threshes[3]) {
             progressWheel.setIndicatorColor(getColor(R.color.success_green))
             progressMessage.setTextColor(getColor(R.color.success_green))
             progressMessage.text = buildString {

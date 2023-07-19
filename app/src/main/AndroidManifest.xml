@@ -51,6 +51,16 @@
         <activity
             android:name=".d1"
             android:exported="false" />
+      <activity
+            android:name=".MeditationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".DrinkingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WorkoutLocaleChooserActivity"
+
+           
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -33,24 +33,7 @@
         <activity
             android:name=".homeWorkoutActivity"
             android:exported="false" />
-        <activity
-            android:name=".d6"
-            android:exported="false" />
-        <activity
-            android:name=".d5"
-            android:exported="false" />
-        <activity
-            android:name=".d4"
-            android:exported="false" />
-        <activity
-            android:name=".d3"
-            android:exported="false" />
-        <activity
-            android:name=".d2"
-            android:exported="false" />
-        <activity
-            android:name=".d1"
-            android:exported="false" />
+
       <activity
             android:name=".MeditationActivity"
             android:exported="false" />
@@ -58,8 +41,10 @@
             android:name=".DrinkingActivity"
             android:exported="false" />
         <activity
+
             android:name=".WorkoutLocaleChooserActivity"
             android:exported="false" />
+
 
            
         <activity

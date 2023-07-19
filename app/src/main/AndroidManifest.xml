@@ -41,7 +41,10 @@
             android:name=".DrinkingActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkoutLocaleChooserActivity" />
+
+            android:name=".WorkoutLocaleChooserActivity"
+            android:exported="false" />
+
 
            
         <activity

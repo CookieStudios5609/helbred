@@ -59,6 +59,10 @@ class MainActivity : AppCompatActivity() {
         workoutsButton.setOnClickListener{
             startActivity(Intent(this, WorkoutLocaleChooserActivity::class.java))
         }
+        meditateButton.setOnClickListener{
+            val intent = Intent(this,MeditationActivity::class.java)
+            startActivity(intent)
+        }
     }
     private fun showProgress(completion: Int) {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)

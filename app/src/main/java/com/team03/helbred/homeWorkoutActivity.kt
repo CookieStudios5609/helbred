@@ -10,6 +10,7 @@ class homeWorkoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home_workout)
         clickListener();
+        val where = intent.getStringExtra("locale")
     }
 
     public fun clickListener(){

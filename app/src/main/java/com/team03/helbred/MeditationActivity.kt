@@ -87,7 +87,7 @@ class MeditationActivity : AppCompatActivity() {
                 timer = object : CountDownTimer(5000, 10) {
                     override fun onTick(remaining: Long) {
                         TimerText.text = remaining.toString()
-                        TimerBar.progress = 5000 - remaining.toInt()
+                        //TimerBar.progress = remaining.toInt()
                     }
 
                     override fun onFinish() {
@@ -96,7 +96,7 @@ class MeditationActivity : AppCompatActivity() {
                         timer = object : CountDownTimer(5000, 10) {
                             override fun onTick(remaining: Long) {
                                 TimerText.text = remaining.toString()
-                                TimerBar.progress = 5000 - remaining.toInt()
+                                TimerBar.progress = remaining.toInt()
                             }
 
                             override fun onFinish() {
@@ -105,7 +105,7 @@ class MeditationActivity : AppCompatActivity() {
                                 timer = object : CountDownTimer(5000, 10) {
                                     override fun onTick(remaining: Long) {
                                         TimerText.text = remaining.toString()
-                                        TimerBar.progress = 5000 - remaining.toInt()
+                                        //TimerBar.progress = remaining.toInt()
                                     }
 
                                     override fun onFinish() {

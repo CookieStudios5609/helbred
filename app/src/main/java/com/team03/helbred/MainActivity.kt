@@ -3,23 +3,26 @@ package com.team03.helbred
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.format.DateUtils
 import android.widget.ImageButton
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.google.android.material.progressindicator.CircularProgressIndicator
 import java.io.File
+import java.time.LocalDate
 import java.util.Scanner
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         setListeners()
-        showProgress(getCompletion()[0])
-
     }
+
+     override fun onResume() {
+         super.onResume()
+
+        showProgress(getCompletion())
+    }
+
     private fun getThresholds(): ArrayList<Int>{ //lets just hope no bad info gets in here
         val prefs = File(applicationContext.filesDir, "pref")
         if (!prefs.exists()) {
@@ -38,33 +41,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     //TODO: preferences page
-    private fun getCompletion(): ArrayList<Int> {
-        // the streak is just a number. Increment it each time user hits 100
-        // I think this is a good compromise; making a file that grows every single day could get problematic...
-        // though, we'd just be iterating over n days where app has been opened
-//        val streak = File(applicationContext.filesDir, "streak").bufferedReader()
-//        val dayCount:String = streak.readLine()
-//        streak.close()
-//        return dayCount
-
+    private fun getCompletion(): Int {
         //I take it back. {creation_timestamp} {total} {water} {workout} {stretch} {meditate}
+
         val streakfile = File(applicationContext.filesDir, "streak")
         if (!streakfile.exists()) {
             val make = streakfile.bufferedWriter()
-            make.write(String.format("%d 0 0 0 0 0", DateUtils.DAY_IN_MILLIS))
+            make.write(String.format("%s, 0, 0, 0, 0, 0", LocalDate.now().toString()))
+            make.close()
         }
         val streak = streakfile.bufferedReader()
-
-        val out = ArrayList<Int>();
         for (line in streak.lines()) {
             val scanner = Scanner(line)
-            if (DateUtils.isToday(scanner.nextLong())) {
-                out.add(scanner.nextInt())
-                out.add(scanner.nextInt())
-                out.add(scanner.nextInt())
-                out.add(scanner.nextInt())
-                out.add(scanner.nextInt())
+            if (line.split(", ")[0] == LocalDate.now().toString()) {
+                val out = line.split(", ")[1].toDouble().toInt()
                 streak.close()
+                scanner.close()
                 return out
             }
         } // if it never finds today, write one!
@@ -72,17 +64,26 @@ class MainActivity : AppCompatActivity() {
         val writer = File(applicationContext.filesDir, "streak").bufferedWriter()
         writer.newLine()
             writer.write(
-                String.format("%d %d %d %d %d %d", DateUtils.DAY_IN_MILLIS, 0, 0, 0, 0, 0))
+                String.format("%s, %d, %d, %d, %d, %d", LocalDate.now().toString(), 0, 0, 0, 0, 0))
         writer.close()
-        out.add(0)
-        out.add(0)
-        out.add(0)
-        out.add(0)
-        out.add(0)
-        return out
+        return 0
     }
-    private fun writeTotals(index: Int, value: Int) {
+    fun writeTotals(index: Int, value: Int) {
         val info = File(applicationContext.filesDir, "streak").bufferedReader()
+        for (line in info.lines()) {
+            val scanner = Scanner(line)
+            if (line.split(", ")[0] == LocalDate.now().toString()) {
+                val write = File(applicationContext.filesDir, "streak").bufferedWriter()
+                val strings = line.split(", ").toMutableList()
+                strings[index] = value.toString()
+                strings[1] = strings[2] + strings[3] + strings[4] + strings[5]
+                write.write(strings.toString())
+                scanner.close()
+                write.close()
+                info.close()
+                break
+            }
+        }
         info.close()
     }
     private fun setListeners() {
@@ -104,7 +105,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
-    private fun showProgress(completion: Int) {
+     fun showProgress(completion: Int) {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
         val progressMessage = findViewById<TextView>(R.id.goalsMessage)
         progressWheel.setProgress(completion, true)

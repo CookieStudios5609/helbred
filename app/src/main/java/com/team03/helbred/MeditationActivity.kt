@@ -3,15 +3,19 @@ package com.team03.helbred
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ProgressBar
+import android.widget.Spinner
 import android.widget.TextView
 
 class MeditationActivity : AppCompatActivity() {
 
     private lateinit var timer: CountDownTimer
     private var totalTimePassed: Long = 0
-    private val totalRoutineTime: Long = 40000
+    private var totalRoutineTime: Long = 300000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,12 +26,33 @@ class MeditationActivity : AppCompatActivity() {
         val TimerButton: Button = findViewById(R.id.TimerButton)
         var BreathingType: TextView = findViewById(R.id.BreathingText)
 
+        val TimeSelector: Spinner = findViewById(R.id.TimeSelect)
 
+        val adapter = ArrayAdapter.createFromResource(this, R.array.Time, android.R.layout.simple_spinner_item)
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        TimeSelector.adapter = adapter
 
         TimerBar.max = 5000
         TimerBar.progress = 0
 
+        TimeSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                // Update the selectedTime variable with the user's selection
+                var selectedTime = when (position) {
+                    0 -> 300000 // 5 minutes in milliseconds
+                    1 -> 600000 // 10 minutes in milliseconds
+                    2 -> 900000 // 15 minutes in milliseconds
+                    else -> totalRoutineTime
+                }
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                totalRoutineTime =300000
+            }
+        }
+        totalRoutineTime = selectedTime
 
         timer = object : CountDownTimer(5000, 10) {
             override fun onTick(remaining: Long) {  //Breath In

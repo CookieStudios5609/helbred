@@ -33,4 +33,3 @@ class DrinkingActivity : AppCompatActivity() {
 
     }
 }
-//code

@@ -7,4 +7,10 @@
     <string name="hydrate">Hydrate</string>
     <string name="preferences">Settings</string>
 
+    <string-array name="Time">
+        <item>5 Minute</item>
+        <item>10 Minute</item>
+        <item>15 Minute</item>
+        <item>30 Minute</item>
+    </string-array>
 </resources>

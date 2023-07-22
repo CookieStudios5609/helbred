@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import java.util.concurrent.TimeUnit
 
 class MeditationActivity : AppCompatActivity() {
 
@@ -24,9 +25,20 @@ class MeditationActivity : AppCompatActivity() {
         val TimerBar: ProgressBar = findViewById(R.id.TimerBar)
         val TimerText: TextView = findViewById(R.id.TimerText)
         val TimerButton: Button = findViewById(R.id.TimerButton)
+        val TimerStop: Button = findViewById(R.id.StopTimer)
         var BreathingType: TextView = findViewById(R.id.BreathingText)
 
+        var TimerLeft : TextView = findViewById(R.id.test1)
+
+        var timeLeftBar = findViewById<ProgressBar>(R.id.TimeLeftBar)
+
         val TimeSelector: Spinner = findViewById(R.id.TimeSelect)
+        timeLeftBar.setProgressDrawable(resources.getDrawable(android.R.drawable.progress_horizontal))
+        TimerLeft.text = totalRoutineTime.toString()
+        timeLeftBar.max = totalRoutineTime.toInt()
+        timeLeftBar.progress = 0
+
+
 
         val adapter = ArrayAdapter.createFromResource(this, R.array.Time, android.R.layout.simple_spinner_item)
 
@@ -40,10 +52,11 @@ class MeditationActivity : AppCompatActivity() {
         TimeSelector.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 // Update the selectedTime variable with the user's selection
-                var selectedTime = when (position) {
+                totalRoutineTime = when (position) {
                     0 -> 300000 // 5 minutes in milliseconds
                     1 -> 600000 // 10 minutes in milliseconds
                     2 -> 900000 // 15 minutes in milliseconds
+                    3 -> 1800000 // 30 minutes in milliseconds
                     else -> totalRoutineTime
                 }
             }
@@ -52,7 +65,7 @@ class MeditationActivity : AppCompatActivity() {
                 totalRoutineTime =300000
             }
         }
-        totalRoutineTime = selectedTime
+
 
         timer = object : CountDownTimer(5000, 10) {
             override fun onTick(remaining: Long) {  //Breath In
@@ -71,6 +84,34 @@ class MeditationActivity : AppCompatActivity() {
         }
         TimerButton.setOnClickListener {
             startBreathingRoutine(BreathingType, TimerText, TimerBar)
+            timeLeftBar.max = totalRoutineTime.toInt()
+            timeLeftBar.progress = 0
+            TimerLeft.visibility = TextView.VISIBLE
+
+            TimerButton.visibility=Button.INVISIBLE
+            TimerStop.visibility =Button.VISIBLE
+
+            timer = object : CountDownTimer(totalRoutineTime, 10) {
+                override fun onTick(remaining: Long) {
+                    timeLeftBar.progress = (totalRoutineTime - remaining).toInt()
+                    TimerLeft.text = formatTimeToMinutes(remaining)
+
+                }
+
+                override fun onFinish() {
+
+                }
+            }
+            timer.start()
+
+        }
+        TimerStop.setOnClickListener {
+            timeLeftBar.progress = 0
+            TimerBar.progress = 0
+            recreate()
+
+
+
         }
 
     }
@@ -102,7 +143,7 @@ class MeditationActivity : AppCompatActivity() {
         BreathingType.text = "Breath In"
         timer = object : CountDownTimer(5000, 10) {
             override fun onTick(remaining: Long) {
-                TimerText.text = remaining.toString()
+                TimerText.text = formatTimeToSeconds(remaining)
                 TimerBar.progress = 5000 - remaining.toInt()
             }
 
@@ -111,7 +152,7 @@ class MeditationActivity : AppCompatActivity() {
                 BreathingType.text = "Hold"
                 timer = object : CountDownTimer(5000, 10) {
                     override fun onTick(remaining: Long) {
-                        TimerText.text = remaining.toString()
+                        TimerText.text = formatTimeToSeconds(remaining)
                         //TimerBar.progress = remaining.toInt()
                     }
 
@@ -120,7 +161,7 @@ class MeditationActivity : AppCompatActivity() {
                         BreathingType.text = "Breath Out"
                         timer = object : CountDownTimer(5000, 10) {
                             override fun onTick(remaining: Long) {
-                                TimerText.text = remaining.toString()
+                                TimerText.text = formatTimeToSeconds(remaining)
                                 TimerBar.progress = remaining.toInt()
                             }
 
@@ -129,7 +170,7 @@ class MeditationActivity : AppCompatActivity() {
                                 BreathingType.text = "Hold"
                                 timer = object : CountDownTimer(5000, 10) {
                                     override fun onTick(remaining: Long) {
-                                        TimerText.text = remaining.toString()
+                                        TimerText.text = formatTimeToSeconds(remaining)
                                         //TimerBar.progress = remaining.toInt()
                                     }
 
@@ -153,6 +194,17 @@ class MeditationActivity : AppCompatActivity() {
         timer.start()
     }
 
+}
+fun formatTimeToMinutes(milliseconds: Long): String {
+    val minutes = TimeUnit.MILLISECONDS.toMinutes(milliseconds)
+    val seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds) -
+            TimeUnit.MINUTES.toSeconds(minutes)
+    return String.format("%02d:%02d", minutes, seconds)
+}
+fun formatTimeToSeconds(milliseconds: Long): String {
+    val seconds = TimeUnit.MILLISECONDS.toSeconds(milliseconds)
+
+    return String.format("%02d", seconds)
 }
 
 

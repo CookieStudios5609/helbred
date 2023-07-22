@@ -12,6 +12,9 @@ import android.widget.EditText
 import android.view.LayoutInflater
 import android.app.AlertDialog
 import android.content.Context
+import java.io.File
+import java.time.LocalDate
+import java.util.Scanner
 
 
 class homeWorkoutActivity : AppCompatActivity() {
@@ -133,6 +136,7 @@ class homeWorkoutActivity : AppCompatActivity() {
     private fun saveWorkoutTimeToFile(duration: String) {
         val fileName = "completed_workouts.txt"
         val timeEntry = "$duration minutes\n"
+        writeTotal(100)
 
         try {
             val fileOutputStream = openFileOutput(fileName, Context.MODE_APPEND)
@@ -148,6 +152,25 @@ class homeWorkoutActivity : AppCompatActivity() {
         super.onDestroy()
         // Cancel the timer to avoid potential memory leaks
         countDownTimer?.cancel()
+    }
+    fun writeTotal(value: Int) {
+        //oops, this looks bad
+        val info = File(applicationContext.filesDir, "streak").bufferedReader()
+        for (line in info.lines()) {
+            val scanner = Scanner(line)
+            if (line.split(", ")[0] == LocalDate.now().toString()) {
+                val write = File(applicationContext.filesDir, "streak").bufferedWriter()
+                val strings = line.split(", ").toMutableList()
+                strings[3] = value.toString()
+                strings[1] = ((strings[2].toInt() + strings[3].toInt() + strings[4].toInt() + strings[5].toInt())/4.0).toString()
+                write.write(strings.toString().removePrefix("[").removeSuffix("]"))
+                scanner.close()
+                write.close()
+                info.close()
+                break
+            }
+        }
+        info.close()
     }
 
 

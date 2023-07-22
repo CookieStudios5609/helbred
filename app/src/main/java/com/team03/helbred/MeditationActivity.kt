@@ -10,6 +10,9 @@ import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Spinner
 import android.widget.TextView
+import java.io.File
+import java.time.LocalDate
+import java.util.Scanner
 import java.util.concurrent.TimeUnit
 
 class MeditationActivity : AppCompatActivity() {
@@ -115,6 +118,25 @@ class MeditationActivity : AppCompatActivity() {
         }
 
     }
+    fun writeTotal(value: Int) {
+        //oops, this looks bad
+        val info = File(applicationContext.filesDir, "streak").bufferedReader()
+        for (line in info.lines()) {
+            val scanner = Scanner(line)
+            if (line.split(", ")[0] == LocalDate.now().toString()) {
+                val write = File(applicationContext.filesDir, "streak").bufferedWriter()
+                val strings = line.split(", ").toMutableList()
+                strings[5] = value.toString()
+                strings[1] = ((strings[2].toInt() + strings[3].toInt() + strings[4].toInt() + strings[5].toInt())/4.0).toString()
+                write.write(strings.toString().removePrefix("[").removeSuffix("]"))
+                scanner.close()
+                write.close()
+                info.close()
+                break
+            }
+        }
+        info.close()
+    }
 
 
 
@@ -133,6 +155,7 @@ class MeditationActivity : AppCompatActivity() {
             override fun onFinish() {
                 BreathingType.text = "Done!"
                 TimerText.text="0"
+                writeTotal(100)
             }
         }
         timer.start()

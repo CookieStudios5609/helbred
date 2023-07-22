@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
         val prefs = File(applicationContext.filesDir, "pref")
         if (!prefs.exists()) {
             val prefWriter = prefs.bufferedWriter()
-            prefWriter.write("25,50,75,100")
+            prefWriter.write("24,49,74,100")
             prefWriter.close()
         }
         val prefReader = prefs.bufferedReader()
@@ -42,7 +42,13 @@ class MainActivity : AppCompatActivity() {
 
     //TODO: preferences page
     private fun getCompletion(): Int {
-        //I take it back. {creation_timestamp} {total} {water} {workout} {stretch} {meditate}
+        //{creation_timestamp} {total} {water} {workout} {stretch} {meditate}
+        //TODO: file gets rewritten each day. Maybe implement FileWriter instead?
+        //Filewriter can append, but will not actually let you edit just the one line
+        // Maybe do a for loop, accumulate all previous lines into one string literal,
+        // and then write the SUPER big chunk all at once, with the relevant data in the final line?
+        // so many loops... should I seriously iterate through the whole file 2-3 times PER UPDATE?!
+        // could always just iterate through once and handle with if statements...
 
         val streakfile = File(applicationContext.filesDir, "streak")
         if (!streakfile.exists()) {
@@ -92,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         val meditateButton = findViewById<ImageButton>(R.id.meditation_btn)
         val stretchButton = findViewById<ImageButton>(R.id.stretch_btn)
         val streakButton = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
+        val settingButton = findViewById<ImageButton>(R.id.settings_btn)
 
         hydrateButton.setOnClickListener{
             val intent = Intent(this,DrinkingActivity::class.java)
@@ -112,6 +119,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ReminderActivity::class.java)
             startActivity(intent)
         }
+        settingButton.setOnClickListener {
+            val intent = Intent(this, PreferencesActivity::class.java)
+            startActivity(intent)
+        }
     }
      fun showProgress(completion: Int) {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)
@@ -124,20 +135,23 @@ class MainActivity : AppCompatActivity() {
         if (completion == threshes[3]) {
             progressWheel.setIndicatorColor(getColor(R.color.success_green))
             progressMessage.setTextColor(getColor(R.color.success_green))
+            percent.setTextColor(getColor(R.color.success_green))
             progressMessage.text = buildString {
                 append("Another day complete. Congratulations!")
             }
         }
         else if (completion > threshes[2]) {
-            progressWheel.setIndicatorColor(getColor(R.color.success_green))
-            progressMessage.setTextColor(getColor(R.color.success_green))
+            progressWheel.setIndicatorColor(getColor(R.color.stretching))
+            progressMessage.setTextColor(getColor(R.color.stretching))
+            percent.setTextColor(getColor(R.color.stretching))
             progressMessage.text = buildString {
                 append("Just a bit more. Keep going!")
             }
         }
         else if (completion > threshes[1]) {
-            progressWheel.setIndicatorColor(getColor(R.color.success_green))
-            progressMessage.setTextColor(getColor(R.color.success_green))
+            progressWheel.setIndicatorColor(getColor(R.color.drink))
+            progressMessage.setTextColor(getColor(R.color.drink))
+            percent.setTextColor(getColor(R.color.drink))
             progressMessage.text = buildString {
                 append("You've got this, keep pushing!")
             }
@@ -152,6 +166,9 @@ class MainActivity : AppCompatActivity() {
         }
         else if (completion < threshes[2]) {
             progressMessage.text = buildString {
+                progressWheel.setIndicatorColor(getColor(R.color.black))
+                progressMessage.setTextColor(getColor(R.color.black))
+                percent.setTextColor(getColor(R.color.black))
                 append("A fresh day. Time to make history!")
             }
         }

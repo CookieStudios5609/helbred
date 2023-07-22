@@ -13,27 +13,8 @@
         android:theme="@style/Theme.Helbred"
         tools:targetApi="31">
         <activity
-            android:name=".kneeToElbow"
-            android:exported="false" />
-        <activity
-            android:name=".lunges"
-            android:exported="false" />
-        <activity
-            android:name=".punches"
-            android:exported="false" />
-        <activity
-            android:name=".squats"
-            android:exported="false" />
-        <activity
-            android:name=".jumpingJacks"
-            android:exported="false" />
-        <activity
-            android:name=".highKnees"
-            android:exported="false" />
-        <activity
             android:name=".homeWorkoutActivity"
             android:exported="false" />
-
       <activity
             android:name=".MeditationActivity"
             android:exported="false" />
@@ -41,12 +22,14 @@
             android:name=".DrinkingActivity"
             android:exported="false" />
         <activity
-
             android:name=".WorkoutLocaleChooserActivity"
             android:exported="false" />
-
-
-           
+        <activity
+            android:name=".StretchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ReminderActivity"
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

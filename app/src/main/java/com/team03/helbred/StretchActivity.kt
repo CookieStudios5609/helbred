@@ -27,7 +27,7 @@ class StretchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_stretch)
 
         val titleTextView: TextView = findViewById(R.id.title_text_view)
         val listView: ListView = findViewById(R.id.stretch_list_view)

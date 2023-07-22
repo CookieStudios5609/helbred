@@ -104,6 +104,14 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,MeditationActivity::class.java)
             startActivity(intent)
         }
+        stretchButton.setOnClickListener {
+            val intent = Intent(this, StretchActivity::class.java)
+            startActivity(intent)
+        }
+        streakButton.setOnClickListener {
+            val intent = Intent(this, ReminderActivity::class.java)
+            startActivity(intent)
+        }
     }
      fun showProgress(completion: Int) {
         val progressWheel = findViewById<CircularProgressIndicator>(R.id.dailyProgressWheel)

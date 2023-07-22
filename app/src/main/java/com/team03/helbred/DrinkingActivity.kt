@@ -49,6 +49,7 @@ class DrinkingActivity : AppCompatActivity() {
         }
 
     }
+
     fun writeTotal(value: Int) {
         //oops, this looks bad
         val info = File(applicationContext.filesDir, "streak").bufferedReader()
@@ -88,3 +89,4 @@ class DrinkingActivity : AppCompatActivity() {
         return 0
     }
 }
+
